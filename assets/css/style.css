@@ -36,27 +36,89 @@ button:focus {
     outline: none;
 }
 
-#batteryCase {
-    top: 200px;
-    left: 47%;
-    width: 50px;
-    height: 100px;
-    margin: 0 0 0 0;
+#game {
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    /* padding: 0 15% 0 15%; */
     display: block;
     position: relative;
+}
+
+#playerStart {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    margin: 0;
+    /* padding: 35% 15% 0 15%; */
+    background-color: #666;
+    border-bottom: 1px solid black;
+    position: relative;
+}
+
+.player {
+    width: 119px;
+    height: 119px;
+    display: inline-block;
+    margin: 0 5% 0 5%;
+    background-color: rgba(47, 64, 255, 0.5)
+}
+
+.container {
+    display: relative;
+}
+
+#health , #oppHealth{
+    width: 50px;
+    height: 15px;
+    margin: 0 0 0 0;
+    display: none;
+    float: right;
+    background-color: green;
+}
+
+#batteryCase, #oppBatteryCase {
+    width: 30px;
+    height: 100px;
+    margin: 0 0 0 107%;
+    display: none;
+    position: absolute;
     border: 1px solid rgb(115, 105, 255);
+    background-color: hotpink;
     border-radius: 5px;
     overflow: hidden;
 }
 
-#battery {
-    top: 0;
-    left: 0;
-    width: 50px;
+#battery, #oppBattery {
+    width: 30px;
     height: 100px;
     margin: 0 0 0 0;
-    display: block;
+    display: none;
     position: absolute;
-    /* border-radius: 5px; */
-    background-color: rgba(47, 252, 255, 0.5);
+    background-color: rgba(86, 242, 68, 0.9);
 }
+
+#playerArena{
+    width: 100%;
+    height: 600px;
+    display: inline-block;
+    position: relative;
+    background-color: rgba(53, 52, 52, 0.5);
+    clear: both;
+}
+
+.playerOne {
+    top: 300px;
+    left: 100px;
+    position: absolute;
+}
+
+.opponent {
+    top: 300px;
+    left: 920px;
+    position: absolute;
+}
+
+

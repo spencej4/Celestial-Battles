@@ -11,52 +11,23 @@
 </head>
 
 <body>
+    <div id='game'>
+        <div id='playerStart'>
+            <!-- <div id='hanSolo' class='player container'>
+                <div id='health'>Health: <span id='healthValDisplay'>100</span></div>
+                <div id='batteryCase'>
+                    <div id='battery'></div>
+                </div>
+            </div> -->
+        </div>
+        <div id='playerArena'>
+            <button id='attack'>Attack</button>
+            <div id='playerOnePlatform'></div>
+            <div id='playerOnePlatform'></div>
+        </div>
+    </div>
 
-<div id='batteryCase'>
-    <div id='battery'></div>
-</div>
-<div id='health'>Health: <span id='healthValDisplay'>100</span></div>
-<button id='attack'>Attack!</button>
-
-
-    <script>
-        let battery = $('#battery'); /* battery div*/
-        let healthValDisplay = $('#healthValDisplay');
-        let attack = $('#attack'); /* attack button */
-
-        // document.onload(game.initiateGame());
-        $( document ).ready(function() {
-            console.log( "ready!" );
-            game.initiateGame();
-        });
-
-        let game = {
-            batVal: 0,  /* initial value for margin-top of battery*/
-            healthVal: 100, /* intial health value */
-
-            initiateGame: function() {
-                this.attack();
-                console.log(this.healthVal);
-            },
-
-            attack: function() {
-                attack.click(function() {   /* each time attack is clicked */
-                    game.healthVal -= 10;    /* decrement healthVal by 10 */
-                    console.log(game.healthVal);
-                    healthValDisplay.text(game.healthVal);   /* update the text value of healthValDisplay */
-                    game.batVal += 10;   /* decrement battery level by 10 */
-
-                    $('#battery').animate({
-                        marginTop: `${game.batVal}`,     /* pass batVal as variable, increase margin-top */
-                    }, 200, function() {
-                        // Animation complete.
-                    });
-                });
-            },
-        }
-
-    </script>
-
+<script src='assets/javascript/game.js'></script>
 </body>
 
 </html>
