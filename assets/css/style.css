@@ -1,4 +1,3 @@
-/*@import url('https://fonts.googleapis.com/css?family=Roboto:100,400');*/
 
 .clearfix {
     overflow: auto;
@@ -23,10 +22,16 @@ body {
     margin: 0;
     width: 100vw;
     padding: 0 auto;
-    /* font-family: 'Roboto', sans-serif; */
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: 100;
     line-height: 1;
     text-align: center;
+}
+
+canvas#canvas {
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
 }
 
 input:focus,
@@ -41,7 +46,6 @@ button:focus {
     width: 100%;
     height: 100vh;
     margin: 0;
-    /* padding: 0 15% 0 15%; */
     display: block;
     position: relative;
 }
@@ -52,10 +56,10 @@ button:focus {
     width: 100%;
     height: 120px;
     margin: 0;
-    /* padding: 35% 15% 0 15%; */
-    background-color: #666;
-    border-bottom: 1px solid black;
+    background-color: none;
+    border-bottom: 1px solid rgb(255, 255, 255);
     position: relative;
+    z-index: 5;
 }
 
 .player {
@@ -63,62 +67,137 @@ button:focus {
     height: 119px;
     display: inline-block;
     margin: 0 5% 0 5%;
-    background-color: rgba(47, 64, 255, 0.5)
+    z-index: 5;
+}
+
+.player img {
+    width: 119px;
+    height: 119px;
+    cursor: pointer;
 }
 
 .container {
     display: relative;
+    z-index: 5;
 }
 
-#health , #oppHealth{
-    width: 50px;
+.characterLabel, .opponentLabel {
+    left: -3px;
+    width: 162px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    font-size: 18px;
+    font-weight: 100;
+    color: white;
+    z-index: 5;
+    border: 1px solid rgba(169, 172, 205, 0.5);
+    text-align: left;
+}
+
+.characterName, .opponentName {
+    left: -3px;
+    bottom: -45px;
+    width: 162px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    font-size: 18px;
+    font-weight: 100;
+    color: white;
+    border: 1px solid rgba(169, 172, 205, 0.5);
+    z-index: 5;
+    text-align: left;
+}
+
+#health,
+#oppHealth {
+    top: 0;
+    left: 125px;
+    width: 35px;
     height: 15px;
     margin: 0 0 0 0;
-    display: none;
+    display: block;
+    position: absolute;
     float: right;
-    background-color: green;
+    background-color: rgb(44, 44, 63);
+    color: white;
+    z-index: 5;
 }
 
-#batteryCase, #oppBatteryCase {
+#batteryCase,
+#oppBatteryCase {
+    top: 18px;
     width: 30px;
     height: 100px;
     margin: 0 0 0 107%;
-    display: none;
+    display: block;
     position: absolute;
     border: 1px solid rgb(115, 105, 255);
     background-color: hotpink;
     border-radius: 5px;
     overflow: hidden;
+    z-index: 5;
 }
 
-#battery, #oppBattery {
+#battery,
+#oppBattery {
     width: 30px;
     height: 100px;
     margin: 0 0 0 0;
-    display: none;
+    display: block;
     position: absolute;
     background-color: rgba(86, 242, 68, 0.9);
+    z-index: 5;
 }
 
-#playerArena{
+#playerArena {
     width: 100%;
     height: 600px;
     display: inline-block;
     position: relative;
-    background-color: rgba(53, 52, 52, 0.5);
     clear: both;
+    z-index: 5;
 }
 
 .playerOne {
     top: 300px;
     left: 100px;
     position: absolute;
+    border: 3px solid rgb(20, 218, 20);
+    z-index: 5;
 }
 
 .opponent {
     top: 300px;
     left: 920px;
     position: absolute;
+    border: 3px solid salmon;
+    z-index: 5;
 }
 
+#attack {
+    bottom: 150px;
+    left: 45%;
+    width: 125px;
+    height: 40px;
+    line-height: 36px;
+    background-color: rgba(169, 172, 205, 0.5);
+    border: none;
+    border-radius: 5px;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    color: black;
+    cursor: pointer;
+    font-size: 20px;
+}
 
+#attack:hover {
+    background-color: Transparent;
+    border: 1px solid white;
+    color: white;
+    z-index: 5;
+}

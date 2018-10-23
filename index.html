@@ -4,26 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Star Wars RPG</title>    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- check that css is in same parent directory as html -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!-- if not add relative pathway -->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script type="text/javascript" src="assets/javascript/warpspeed.min.js"></script>
+    <link rel='stylesheet' type='text/css' href='assets/css/reset.css'>
+    <link rel='stylesheet' type='text/css' href='assets/css/style.css'>
 </head>
 
 <body>
     <div id='game'>
-        <div id='playerStart'>
-            <!-- <div id='hanSolo' class='player container'>
-                <div id='health'>Health: <span id='healthValDisplay'>100</span></div>
-                <div id='batteryCase'>
-                    <div id='battery'></div>
-                </div>
-            </div> -->
-        </div>
+        <div id='logo'></div>
+        <canvas id="canvas" style="position:fixed; top:0; left:0; width:100%; height:100%;"></canvas>
+            <script>var x = new WarpSpeed("canvas",
+                {density: 10, backgroundColor: "#000000", starColor: "#FFFFFF", speed: 1.2 });
+            </script> 
+        <!-- <div id='logo'></div> -->
+        <div id='playerStart'></div>
         <div id='playerArena'>
             <button id='attack'>Attack</button>
-            <div id='playerOnePlatform'></div>
-            <div id='playerOnePlatform'></div>
         </div>
     </div>
 
