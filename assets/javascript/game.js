@@ -16,7 +16,7 @@ $(document).ready(function () {
         let characterImage = characters[i].image;
         let name = characters[i].name;
 
-        charDiv.addClass('player container').attr('id', characters[i].name);
+        charDiv.addClass('player container').attr('id', name);
         imageDiv.attr('src', characterImage);
 
         $('#playerStart').append(charDiv);
@@ -189,6 +189,12 @@ let game = {
         game.choosePlayers();
     },
 
+    playAttackSound: function () {
+        let myAudio = document.createElement("audio");
+        myAudio.src = "assets/audio/pew.mp3";
+        myAudio.play();
+    },
+
 
     attack: function () {
 
@@ -200,7 +206,16 @@ let game = {
             game.opponent.batteryVal += game.opponent.batteryDecrementVal; 
             // update the text value of opponentHealthValDisplay
             $('#oppHealthValDisplay').text(game.opponent.healthVal); 
+            game.playAttackSound();
 
+            // show lazers
+            $('.playerLazer').css('display', 'block');
+            setTimeout(function () {
+                // hide lazers
+                $('.playerLazer').css('display', 'none');
+            }, 200);
+            
+            // animate the battery
             $('#oppBattery').animate({
                 marginTop: `${game.opponent.batteryVal}`,
                 /* pass batteryVal as variable, to increase margin-top */
@@ -222,6 +237,14 @@ let game = {
                 // update the text value of playerHealthValDisplay
                 $('#playerHealthValDisplay').text(game.playerOne.healthVal); 
 
+                // show lazers
+                $('.opponentLazer').css('display', 'block');
+                setTimeout(function () {
+                    // hide lazers
+                    $('.opponentLazer').css('display', 'none');
+                }, 200);
+                
+                // animate the battery
                 $('#battery').animate({
                     marginTop: `${game.playerOne.batteryVal}`,
                     /* pass batteryVal as variable, to increase margin-top */
@@ -233,7 +256,7 @@ let game = {
                         $('.playerOne').remove().removeClass('playerOne');
                     }
                 })
-            }, 300);
+            }, 200);
         })
-    }
+    },
 }
