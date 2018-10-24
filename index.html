@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Star Wars RPG</title>    
+    <title>Star Wars RPG</title>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script type="text/javascript" src="assets/javascript/warpspeed.min.js"></script>
     <link rel='stylesheet' type='text/css' href='assets/css/reset.css'>
@@ -11,14 +11,16 @@
 </head>
 
 <body>
-    <!-- <audio preload="auto" autoplay>
-        <source src="assets/audio/Star_Wars_original_opening_crawl_1977.mp3" type="audio/mp3">
-    </audio> -->
 
-    <section class="intro">
-        A long time ago, in a full-stack <br> classroom far, far away....
-    </section>
-    
+    <div id='initializeDisplay'></div>
+
+    <div id='game'>
+        <audio id="my_audio" src="assets/audio/openingCrawl.mp3"></audio>
+
+        <section class="intro">
+            A long time ago, in a full-stack <br> classroom far, far away....
+        </section>
+
     <section class="logo">
         <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
             y="0px" width="693.615px" height="419.375px" viewBox="0 0 693.615 419.375" enable-background="new 0 0 693.615 419.375"
@@ -109,29 +111,43 @@
             </g>
         </svg>
     </section>
-    
+
     <div id="board">
         <div id="content">
             <p id="title">Episode I</p>
             <p id="subtitle">THE ELUSIVE VICTORY</p>
             <br>
-            <p id="directions">Directions: Choose a player, then choose an opponent. You may attack your opponent. They will, in turn, counter-attack
-            you. If you survive the encounter and defeat your opponent, you will continue to additional rounds of battle. May the
-            Force be with you.</p>
+            <p id="directions">Directions: Choose a player, then choose an opponent. You may attack your opponent. They
+                will, in turn, counter-attack
+                you. If you survive the encounter and defeat your opponent, you will continue to additional rounds of
+                battle. 
+                <br>
+                May the
+                Force be with you.</p>
         </div>
     </div>
 
-    <div id='game'>
+
+
+
+
+
+
         <canvas id="canvas" style="position:fixed; top:0; left:0; width:100%; height:100%;"></canvas>
-            <script>var x = new WarpSpeed("canvas",
-                {density: 10, backgroundColor: "#000000", starColor: "#FFFFFF", speed: 1.2 });
-            </script> 
+        <script>
+            var x = new WarpSpeed("canvas", {
+                density: 10,
+                backgroundColor: "#000000",
+                starColor: "#FFFFFF",
+                speed: 1.2
+            });
+        </script>
         <div id='playerStart'></div>
         <div id='playerArena'>
-        
-        
-        <div class='playerLazer'></div>
-        <div class='opponentLazer'></div>
+
+
+            <div class='playerLazer'></div>
+            <div class='opponentLazer'></div>
 
 
 
@@ -139,7 +155,7 @@
         </div>
     </div>
 
-<script src='assets/javascript/game.js'></script>
+    <script src='assets/javascript/game.js'></script>
 </body>
 
 </html>

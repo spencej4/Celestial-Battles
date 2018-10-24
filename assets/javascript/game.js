@@ -1,7 +1,9 @@
 $(document).ready(function () {
+    // inform user to press any key to start the game
+    initializeDisplay.textContent = "Press Any Key To Get Started.";
 
     let characters = [
-        {name: "Chewey", image: 'assets/images/chewey.png'}, 
+        {name: "Chewbacca", image: 'assets/images/chewey.png'}, 
         {name: "R2-D2",  image: 'assets/images/r2.png'},
         {name: "Leia", image: 'assets/images/leia.png'},
         {name: "Storm Trooper", image: 'assets/images/stormtrooper.png'},
@@ -22,7 +24,10 @@ $(document).ready(function () {
         $('#playerStart').append(charDiv);
         charDiv.append(imageDiv);
     }
-    game.initiateGame();
+
+    document.onkeyup = function () {
+        game.initiateGame();
+    }
 });
 
 
@@ -54,6 +59,9 @@ let game = {
     },
 
     initiateGame: function () {
+        $('#initializeDisplay').css('display', 'none');
+        $('#game').css('display', 'block');
+        $("#my_audio").get(0).play();
         this.attack();
         this.choosePlayers();
     },
