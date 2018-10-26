@@ -15,7 +15,6 @@ let game = {
     introStopped: false,
     playerStartActive: true,
     strengthsArr: [1, 2, 16, 17],
-    // strengthsArr: [100],
     playerOne: {
         name: "",
         chosen: false,
@@ -393,5 +392,3 @@ let game = {
         $('#playerStart').empty();
     }
 }
-
-// after winning second game, playAgain doesn't slide playerStart down
