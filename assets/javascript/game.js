@@ -12,7 +12,10 @@ $(document).ready(function () {
 
 let game = {
     round: 1,
-    strengthsArr: [80, 90],
+    introStopped: false,
+    playerStartActive: true,
+    // strengthsArr: [1, 2, 16, 17],
+    strengthsArr: [100],
     playerOne: {
         name: "",
         chosen: false,
@@ -37,14 +40,25 @@ let game = {
         batteryDecrementVal: 0,
     },
 
-    makeCharacters: function() {
-        let characters = [
-        {name: "Chewbacca", image: 'assets/images/chewey.png'}, 
-        {name: "R2-D2",  image: 'assets/images/r2.png'},
-        {name: "Leia", image: 'assets/images/leia.png'},
-        {name: "Storm Trooper", image: 'assets/images/stormtrooper.png'},
-        {name: "BB-8", image: 'assets/images/bb8.png'}
+    makeCharacters: function () {
+        let characters = [{name: "Chewbacca", image: 'assets/images/chewey.png'},
+            {name: "R2-D2", image: 'assets/images/r2.png'},
+            {name: "Leia", image: 'assets/images/leia.png'},
+            {name: "Storm Trooper", image: 'assets/images/stormtrooper.png'},
+            {name: "BB-8", image: 'assets/images/bb8.png'}
         ]
+
+        // function to shuffle indexes of an array
+        function shuffleCharacters(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
+            }
+            return array;
+        }
+        
+        // randomizes characters array
+        characters = shuffleCharacters(characters);
 
         //make characters
         for (var i = 0; i < characters.length; i++) {
@@ -61,7 +75,7 @@ let game = {
             charDiv.append(imageDiv);
         }
     },
-    
+
     initiateGame: function () {
         $('#initializeDisplay').css('display', 'none');
         $('#game').css('display', 'block');
@@ -70,14 +84,23 @@ let game = {
         this.choosePlayers();
     },
 
+    fadeIntro: function () {
+        // fades intro divs when user clicks a character
+        $('#board, .logo, .intro').fadeOut(5000);
+        game.introStopped = true;
+    },
 
     choosePlayers: function () {
         $('.player').click(function () {
+            // fades intro if user clicks player early
+            if (game.introStopped === false) {
+                game.fadeIntro();
+            }
             game.calcPlayerStrengths();
             target = event.target;
 
             switch (true) {
-                /* chooses player one */
+                //chooses player one 
                 case (!game.playerOne.chosen):
                     game.playerOne.chosen = true;
                     $(this).addClass('playerOne');
@@ -85,29 +108,33 @@ let game = {
                     game.createPlayerHealthDisplay(target);
                     game.createPlayerTitle(target);
                     break;
-                /* chooses opponent */
+                //chooses opponent 
                 case (game.playerOne.chosen && !game.opponent.chosen):
                     game.opponent.chosen = true;
                     $(this).addClass('opponent');
                     game.opponent.name = $(this).attr('id');
                     game.createOpponentHealthDisplay(target);
                     game.createOpponentTitle(target);
-                    // call showAttack to show atttack button
+                    // calls showAttack to show atttack button
                     game.showAttack();
-                    // call showMessage
+                    // tells player which round has just started
                     game.showMessage(`Round #${game.round}`);
                     break;
             }
         })
     },
 
-    showAttack: function() {
+    showAttack: function () {
         // shows attack button
         $('#attack').css('display', 'block');
     },
 
-    showMessage: function(message) {
-        // use message variable passed as param to function
+    hideAttack:  function() {
+        $('#attack').css('display', 'none');
+    },
+
+    showMessage: function (message) {
+        // uses message variable passed as param to showMessage function
         $('#messages').html(message);
         // fade message in, then out
         $('#messages').fadeIn(1000, function () {
@@ -156,7 +183,7 @@ let game = {
 
     },
 
-    createPlayerTitle: function(target) {
+    createPlayerTitle: function (target) {
         // creates html elements
         let characterTitle = $('<div></div>');
         let characterName = $('<span></span>');
@@ -171,7 +198,7 @@ let game = {
         characterName.text(game.playerOne.name);
     },
 
-    createOpponentTitle: function(target) {
+    createOpponentTitle: function (target) {
         // creates html elements
         let opponentTitle = $('<div></div>');
         let opponentName = $('<span></span>');
@@ -192,28 +219,12 @@ let game = {
         // assigns opponent strength a random strength
         game.opponent.strength = game.strengthRandom;
 
-        switch (true) {
-            case game.round === 1:
-                this.playerOne.healthDecrementVal = game.playerOne.strength + 2;
-                this.playerOne.batteryDecrementVal = game.playerOne.strength + 2;
-                game.opponent.healthDecrementVal = game.opponent.strength;
-                game.opponent.batteryDecrementVal = game.opponent.strength;
-                break;
-            case game.round === 2:
-                this.playerOne.healthDecrementVal = game.playerOne.strength + 2;
-                this.playerOne.batteryDecrementVal = game.playerOne.strength + 2;
-                game.opponent.healthDecrementVal = game.opponent.strength;
-                game.opponent.batteryDecrementVal = game.opponent.strength;
-            case game.round === 3:
-                this.playerOne.healthDecrementVal = game.playerOne.strength + 2;
-                this.playerOne.batteryDecrementVal = game.playerOne.strength + 2;
-                game.opponent.healthDecrementVal = game.opponent.strength;
-                game.opponent.batteryDecrementVal = game.opponent.strength;
-            case game.round === 4:
-                this.playerOne.healthDecrementVal = game.playerOne.strength + 2;
-                this.playerOne.batteryDecrementVal = game.playerOne.strength + 2;
-                game.opponent.healthDecrementVal = game.opponent.strength;
-                game.opponent.batteryDecrementVal = game.opponent.strength;
+
+        for (var i=0; i < 5; i++) {
+            game.playerOne.healthDecrementVal = game.playerOne.strength + 2;
+            game.playerOne.batteryDecrementVal = game.playerOne.strength + 2;
+            game.opponent.healthDecrementVal = game.opponent.strength;
+            game.opponent.batteryDecrementVal = game.opponent.strength;
         }
     },
 
@@ -225,15 +236,13 @@ let game = {
 
 
     attack: function () {
-
         $('#attack').click(function () {
-        // opponent damage
             // decrement healthVal by 10
-            game.opponent.healthVal -= game.opponent.healthDecrementVal; 
+            game.opponent.healthVal -= game.opponent.healthDecrementVal;
             // decrement battery level by 10
-            game.opponent.batteryVal += game.opponent.batteryDecrementVal; 
+            game.opponent.batteryVal += game.opponent.batteryDecrementVal;
             // update the text value of opponentHealthValDisplay
-            $('#oppHealthValDisplay').text(game.opponent.healthVal); 
+            $('#oppHealthValDisplay').text(game.opponent.healthVal);
             game.playAttackSound();
 
             // show lazers
@@ -242,51 +251,61 @@ let game = {
                 // hide lazers
                 $('.playerLazer').css('display', 'none');
             }, 200);
-            
+
             // animate the battery
             $('#oppBattery').animate({
+                // pass batteryVal as variable, to increase margin-top 
                 marginTop: `${game.opponent.batteryVal}`,
-                /* pass batteryVal as variable, to increase margin-top */
             }, 200, function () {
                 // if opponent health drops below 0
                 if (game.opponent.healthVal <= 0) {
                     //hides attack button
-                    $('#attack').css('display', 'none');
+                    game.hideAttack();
                     // calls showMessage
                     game.showMessage(`You defeated ${game.opponent.name}`);
                     // calls resetOpponent
                     game.resetOpponent();
+                    // calls updateRoundCount
                     game.updateRoundCount();
                 }
             })
             setTimeout(function () {
-            // player one damage
                 // decrement healthVal by 10
-                game.playerOne.healthVal -= game.playerOne.healthDecrementVal; 
+                game.playerOne.healthVal -= game.playerOne.healthDecrementVal;
                 // decrement playerBatLevel level by 10
-                game.playerOne.batteryVal += game.playerOne.batteryDecrementVal; 
+                game.playerOne.batteryVal += game.playerOne.batteryDecrementVal;
                 // update the text value of playerHealthValDisplay
-                $('#playerHealthValDisplay').text(game.playerOne.healthVal); 
+                $('#playerHealthValDisplay').text(game.playerOne.healthVal);
 
                 // show lazers
-                $('.opponentLazer').css('display', 'block');
+                $('.opponentLazer').css('display', 'block');  
                 setTimeout(function () {
                     // hide lazers
                     $('.opponentLazer').css('display', 'none');
                 }, 200);
-                
-                // animate the battery
+
+                // animates the battery
                 $('#battery').animate({
+                    // passes batteryVal as variable, to increase margin-top 
                     marginTop: `${game.playerOne.batteryVal}`,
-                    /* pass batteryVal as variable, to increase margin-top */
                 }, 200, function () {
                     // if player one health drops below 0
                     if (game.playerOne.healthVal <= 0) {
-                        console.log('You died');
-                        // remove player from the DOM 
+                        // removes player from the DOM 
                         $('.playerOne').remove().removeClass('playerOne');
-                        // call showMessage
+                        // calls showMessage
                         game.showMessage(`${game.opponent.name} defeated you.`);
+                        // calls updateRoundCount
+                        game.updateRoundCount();
+                        // hides attack button
+                        game.hideAttack();
+                        // removes players from DOM
+                        game.clearCharacters();
+                        // shows play again button
+                        game.showPlayAgain();
+                        // slides playerStart up
+                        // game.togglePlayerStart();
+                        game.slideUpPlayers();
                     }
                 })
             }, 200);
@@ -303,34 +322,48 @@ let game = {
         game.opponent.batteryVal = 0;
         game.opponent.batteryDecrementVal = 0;
         game.opponent.healthVal = 100;
-        // calls choosePlayers
         game.choosePlayers();
     },
 
-    updateRoundCount: function() {
+    updateRoundCount: function () {
         game.round++;
+
+        // player defeated opponent
         if (game.round >= 5) {
-            game.showMessage(`${game.playerOne.name} has attained victory!`);
+            game.roud = 1;
+            game.clearCharacters();
+            game.slideUpPlayers();
             // call showPlayAgain
             game.showPlayAgain();
+            game.showMessage(`${game.playerOne.name} has attained victory!`);
         }
+    },
+
+    slideUpPlayers: function() {
+        $('#playerStart').css("transform", "translateY(-125px)");
+    },
+
+    slideDownPlayers: function() {
+        $('#playerStart').css("transform", "translateY(0px)");
     },
 
     showPlayAgain: function () {
         // shows play again button
         $('#playAgain').css('display', 'block');
         // resets game 
-        $('#playAgain').click(function() {
+        $('#playAgain').click(function () {
+            game.clearCharacters();
             game.playAgain();
         });
     },
 
-    playAgain: function() {
+    playAgain: function () {
         // hides play again button
         $('#playAgain').css('display', 'none');
         // makes characters, appends to DOM
         this.makeCharacters();
         game.round = 1;
+        game.slideDownPlayers();
         this.attack();
         this.choosePlayers();
         // resets game values
@@ -353,7 +386,12 @@ let game = {
             healthDecrementVal: 0,
             batteryDecrementVal: 0,
         }
+    },
+
+    clearCharacters: function () {
+        // empties playerStart div, removes all characters
+        $('#playerStart').empty();
     }
 }
 
-// after clicking play again remove player one from the DOM
+// after winning second game, playAgain doesn't slide playerStart down
