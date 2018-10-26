@@ -38,6 +38,21 @@ let game = {
         healthDecrementVal: 0,
         batteryDecrementVal: 0,
     },
+    themeSong: {
+        theme: document.createElement("audio"),
+
+        playThemeSong: function () {
+            // let themeSong = document.createElement("audio");
+            this.theme.src = "assets/audio/openingCrawl.mp3";
+            this.theme.play();
+        },
+
+        fadeOut: function () {
+            // this.themeSong.empty();
+            this.theme.src = 'assets/audio/fadeOut.mp3';
+            this.theme.play();
+        }
+    },
 
     makeCharacters: function () {
         let characters = [{name: "Chewbacca", image: 'assets/images/chewey.png'},
@@ -78,23 +93,32 @@ let game = {
     initiateGame: function () {
         $('#initializeDisplay').css('display', 'none');
         $('#game').css('display', 'block');
-        $("#my_audio").get(0).play();
+
+        // let themeSong = document.createElement("audio");
+        // themeSong.src = "assets/audio/openingCrawl.mp3";
+        // themeSong.play();
+
+        this.themeSong.playThemeSong();
+        // $("#my_audio").get(0).play();
         this.attack();
         this.choosePlayers();
     },
 
     fadeIntro: function () {
         // fades intro divs when user clicks a character
-        $('#board').fadeOut(5000);
-        $('.logo, .intro').fadeOut(5000);
+        $('#board').fadeOut(2000);
+        $('.logo, .intro').fadeOut(2000);
         game.introStopped = true;
     },
 
     choosePlayers: function () {
         $('.player').click(function () {
-            // fades intro if user clicks player early
+            // if user clicks on a character during intro
             if (game.introStopped === false) {
+                // fades out intro
                 game.fadeIntro();
+                // playes fadeout sound
+                game.themeSong.fadeOut();
             }
             game.calcPlayerStrengths();
             target = event.target;
@@ -363,6 +387,7 @@ let game = {
         // makes characters, appends to DOM
         this.makeCharacters();
         game.round = 1;
+        game.themeSong.fadeOut();
         game.slideDownPlayers();
         this.attack();
         this.choosePlayers();
