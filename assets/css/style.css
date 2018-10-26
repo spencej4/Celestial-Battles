@@ -1,4 +1,3 @@
-
 .clearfix {
     overflow: auto;
 }
@@ -12,6 +11,10 @@
     height: 0;
 }
 
+:focus {
+    outline: none !important;
+}
+
 html {
     width: 100vw;
     height: 100vh;
@@ -21,11 +24,21 @@ html {
 body {
     margin: 0;
     width: 100vw;
+    height: 100vh;
     padding: 0 auto;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 100;
     line-height: 1;
     text-align: center;
+    box-sizing: border-box;
+
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #initializeDisplay {
@@ -39,9 +52,9 @@ body {
     z-index: 1;
 }
 
- #game {
+#game {
     display: none;
-} 
+}
 
 canvas#canvas {
     width: 100%;
@@ -96,7 +109,8 @@ button:focus {
     z-index: 5;
 }
 
-.characterLabel, .opponentLabel {
+.characterLabel,
+.opponentLabel {
     left: -3px;
     width: 162px;
     height: 20px;
@@ -111,7 +125,8 @@ button:focus {
     text-align: left;
 }
 
-.characterName, .opponentName {
+.characterName,
+.opponentName {
     left: -3px;
     bottom: -45px;
     width: 162px;
@@ -175,7 +190,8 @@ button:focus {
 
 #playerArena {
     width: 100%;
-    height: 600px;
+    /* height: 600px; */
+    height: 81%;
     display: inline-block;
     position: relative;
     clear: both;
@@ -183,24 +199,28 @@ button:focus {
 }
 
 .playerOne {
-    top: 300px;
-    left: 65px;
+    /* top: 300px;
+    left: 65px; */
+    top: 248%;
+    left: 4.8%;
     position: absolute;
     border: 3px solid rgb(20, 218, 20);
     z-index: 5;
 }
 
 .opponent {
-    top: 300px;
-    left: 920px;
+    /* top: 300px;
+    left: 920px; */
+    top: 248%;
+    left: 72.5%;
     position: absolute;
     border: 3px solid salmon;
     z-index: 5;
 }
 
 #attack {
-    bottom: 150px;
     left: 45%;
+    bottom: 25%;
     width: 125px;
     height: 40px;
     line-height: 36px;
@@ -215,13 +235,41 @@ button:focus {
     font-size: 20px;
 }
 
-#attack:hover {
+#attack:hover, #playAgain:hover{
     background-color: Transparent;
     border: 2px solid rgba(249, 215, 28, 0.8);
     color: rgba(249, 215, 28, 0.8);
     z-index: 5;
 }
 
+#playAgain {
+    left: 45%;
+    bottom: 25%;
+    width: 125px;
+    height: 40px;
+    line-height: 36px;
+    background-color: rgba(249, 215, 28, 0.8);
+    border: none;
+    border-radius: 5px;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    color: black;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#messages {
+    width: 100%;
+    height: 10%;
+    bottom: 0;
+    left: 0;
+    margin: 0 auto;
+    font-size: 52px;
+    font-weight: 100;
+    position: absolute;
+    color: rgba(249, 215, 28, 0.8);
+}
 
 /* -----------------------star wars opening crawl-----------------------*/
 
@@ -357,8 +405,10 @@ p {
     to {
         transform: rotate(0deg);
         background: rgba(86, 242, 68, 0.9);
-        transform:translateX(693px);
+        transform: translateX(693px);
+        /* transform: translateX(80%); */
     }
+
     from {
         transform: rotate(0deg);
         background: rgba(86, 242, 68, 0.9);
@@ -369,7 +419,8 @@ p {
     to {
         transform: rotate(0deg);
         background: hotpink;
-        transform: translateX(-693px);
+        /* transform: translateX(-693px); */
+        transform: translateX(-80%);
     }
 
     from {
@@ -379,24 +430,29 @@ p {
 }
 
 .playerLazer {
-    width: 693px;
-    margin: 230px auto 0 auto;
+    /* width: 693px; */
+    width: 60%;
+    /* margin: 230px auto 0 auto; */
+    margin: 19% auto 0 auto;
     display: none;
     background: none;
     height: 2px;
     border-radius: 100%;
     animation: effect 0.2s ease-in-out infinite alternate;
-    z-index: 6;
+    z-index: 2;
 }
 
 .opponentLazer {
-    left: 500px;
-    width: 693px;
-    margin: 290px auto 0 auto;
+    /* left: 500px; */
+    left: 72.5%;
+    /* width: 693px; */
+    width: 55%;
+    /* margin: 290px auto 0 auto; */
+    margin: 21% auto 0 auto;
     display: none;
     background: none;
     height: 2px;
     border-radius: 100%;
     animation: effect1 0.2s ease-in-out infinite alternate;
-    z-index: 6;
+    z-index: 2;
 }
