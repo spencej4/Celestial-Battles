@@ -14,8 +14,8 @@ let game = {
     round: 1,
     introStopped: false,
     playerStartActive: true,
-    // strengthsArr: [1, 2, 16, 17],
-    strengthsArr: [100],
+    strengthsArr: [1, 2, 16, 17],
+    // strengthsArr: [100],
     playerOne: {
         name: "",
         chosen: false,
@@ -56,7 +56,7 @@ let game = {
             }
             return array;
         }
-        
+
         // randomizes characters array
         characters = shuffleCharacters(characters);
 
