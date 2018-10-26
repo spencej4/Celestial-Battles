@@ -48,6 +48,8 @@ body {
     background-color: black;
     color: #ffffff;
     z-index: 1;
+    font-size: 28px;
+    letter-spacing: 8px;
 }
 
 #game {

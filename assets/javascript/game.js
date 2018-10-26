@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // inform user to press any key to start the game
-    initializeDisplay.textContent = "Press Any Key To Get Started.";
+    initializeDisplay.textContent = "Press Any Key";
     // makes characters
     game.makeCharacters();
     // starts game on any keypress
@@ -85,7 +85,8 @@ let game = {
 
     fadeIntro: function () {
         // fades intro divs when user clicks a character
-        $('#board, .logo, .intro').fadeOut(5000);
+        $('#board').fadeOut(5000);
+        $('.logo, .intro').fadeOut(5000);
         game.introStopped = true;
     },
 
