@@ -13,8 +13,9 @@ $(document).ready(function () {
 let game = {
     round: 1,
     introStopped: false,
-    playerStartActive: true,
-    strengthsArr: [1, 2, 16, 17],
+    playerStartActive: false,
+    strengthsArr: [1, 3, 15, 19],
+    strengthRandom: 0,
     playerOne: {
         name: "",
         chosen: false,
@@ -93,15 +94,10 @@ let game = {
     initiateGame: function () {
         $('#initializeDisplay').css('display', 'none');
         $('#game').css('display', 'block');
-
-        // let themeSong = document.createElement("audio");
-        // themeSong.src = "assets/audio/openingCrawl.mp3";
-        // themeSong.play();
-
         this.themeSong.playThemeSong();
-        // $("#my_audio").get(0).play();
         this.attack();
         this.choosePlayers();
+        game.slideDownPlayersDelayed();
     },
 
     fadeIntro: function () {
@@ -364,11 +360,18 @@ let game = {
     },
 
     slideUpPlayers: function() {
-        $('#playerStart').css("transform", "translateY(-125px)");
+        $('#playerStart').css("transform", "translateY(0px)");
     },
 
     slideDownPlayers: function() {
-        $('#playerStart').css("transform", "translateY(0px)");
+        $('#playerStart').css("transform", "translateY(130px)");
+    },
+
+    slideDownPlayersDelayed: function() {
+        setTimeout(() => {
+            $('#playerStart').css("transform", "translateY(130px)");
+        }, 9200);
+        game.playerStartActive = true;
     },
 
     showPlayAgain: function () {
@@ -387,6 +390,7 @@ let game = {
         // makes characters, appends to DOM
         this.makeCharacters();
         game.round = 1;
+        game.strengthRandom = 0;
         game.themeSong.fadeOut();
         game.slideDownPlayers();
         this.attack();
