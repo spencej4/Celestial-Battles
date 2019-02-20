@@ -1,4 +1,4 @@
-# Star Wars Game
+# Celestial Battles Role Playing Game
 
 ## About
 
@@ -6,8 +6,8 @@ This app dynamically updates gameplay state and reflects these changes in the DO
 
 ## Deployment
 * This App is deployed to Github Pages.
-* Link: https://spencej4.github.io/unit-4-game/
-* Github repo: https://github.com/spencej4/unit-4-game
+* Link: https://spencej4.github.io/Celestial-Battles/
+* Github repo: https://github.com/spencej4/Celestial-Battles
 
 ## Built With
 
