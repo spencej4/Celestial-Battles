@@ -1,13 +1,21 @@
-# unit-4-game
+# Star Wars Game
 
+## About
 
-# jQuery Assignment
+This app dynamically updates gameplay state and reflects these changes in the DOM.
 
-### Overview
+## Deployment
+* This App is deployed to Github Pages.
+* Link: https://spencej4.github.io/unit-4-game/
+* Github repo: https://github.com/spencej4/unit-4-game
 
-In this assignment, you'll create another fun and interactive game for web browsers. This time, your app must dynamically update your HTML pages with the jQuery library.
+## Built With
 
-### Star Wars RPG Game 
+* [Warspeed](https://github.com/adolfintel/warpspeed) - Library for drawing an animated and customizable starfield.
+* Javascript - Game logic and game play updates.
+* HTML/ CSS - Front-end UI.
+
+## Overview 
 1. Here's how the app works:
 
 * When the game starts, the player will choose a character by clicking on the fighter's picture. The player will fight as that character for the rest of the game.
@@ -16,7 +24,7 @@ In this assignment, you'll create another fun and interactive game for web brows
 
 * The player chooses an opponent by clicking on an enemy's picture.
 
-* Once the player selects an opponent, that enemy is moved to a `defender area`.
+* Once the player selects an opponent, that enemy is moved to a `play area`.
 
 * The player will now be able to click the `attack` button.
 * Whenever the player clicks `attack`, their character damages the defender. The opponent will lose `HP` (health points). These points are displayed at the bottom of the defender's picture. 
@@ -24,11 +32,11 @@ In this assignment, you'll create another fun and interactive game for web brows
 
 3. The player will keep hitting the attack button in an effort to defeat their opponent.
 
-* When the defender's `HP` is reduced to zero or below, remove the enemy from the `defender area`. The player character can now choose a new opponent.
+* When the defender's `HP` is reduced to zero or below, the enemy is removed from the `play area`. The player character can now choose a new opponent.
 
 4. The player wins the game by defeating all enemy characters. The player loses the game the game if their character's `HP` falls to zero or below.
 
-##### Game design notes
+## Game design notes
 
 * Each character in the game has 3 attributes: `Health Points`, `Attack Power` and `Counter Attack Power`.
 
@@ -38,14 +46,14 @@ In this assignment, you'll create another fun and interactive game for web brows
 
 * Unlike the player's `Attack Points`, `Counter Attack Power` never changes.
 
-* The `Health Points`, `Attack Power` and `Counter Attack Power` of each character must differ.
+* The `Health Points`, `Attack Power` and `Counter Attack Power` of each character differs.
 
-* No characters in the game can heal or recover Health Points. 
+* No characters in the game heal or recover Health Points. 
 
-* A winning player must pick their characters wisely by first fighting an enemy with low `Counter Attack Power`. This will allow them to grind `Attack Power` and to take on enemies before they lose all of their `Health Points`. Healing options would mess with this dynamic.
+* A winning player picks their characters wisely by first fighting an enemy with low `Counter Attack Power`. This will allow them to grind `Attack Power` and to take on enemies before they lose all of their `Health Points`. Healing options would mess with this dynamic.
 
-* Your players should be able to win and lose the game no matter what character they choose. The challenge should come from picking the right enemies, not choosing the strongest player.
+* Your players are able to win and lose the game no matter what character they choose. The challenge should come from picking the right enemies, not choosing the strongest player.
 
-### Author
+## Author
 
-# Spencer Jack
+* Spencer Jack
